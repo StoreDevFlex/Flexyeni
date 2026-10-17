@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex - Script Hub & Discord Community</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            900: '#4c1d95',
+                            accent: '#d946ef',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 15px rgba(139, 92, 246, 0.4)' },
+                            '100%': { boxShadow: '0 0 30px rgba(217, 70, 239, 0.8)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #090a0f;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-1 {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, rgba(217, 70, 239, 0.08) 50%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            bottom: 10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(100px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(18, 18, 26, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(167, 139, 250, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(124, 58, 237, 0.2);
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Neon Text Effect */
+        .neon-text-purple {
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.5), 0 0 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa 0%, #d946ef 50%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e2640;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between relative">
+
+    <!-- Ambient Background Glows -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid fa-bolt text-xl text-white"></i>
+                </div>
+                <span class="text-2xl font-black tracking-wider uppercase gradient-text">
+                    FLEX
+                </span>
+            </a>
+
+            <!-- Quick Join Button (Header) -->
+            <a href="https://discord.gg/HxnF5hzRN" target="_blank" rel="noopener noreferrer" 
+               class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 border border-brand-500/30 text-sm font-semibold hover:border-brand-500 hover:shadow-lg hover:shadow-brand-500/20 transition-all duration-300">
+                <i class="fa-brands fa-discord text-brand-400 text-lg"></i>
+                <span>Discord</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="relative z-10 flex-grow flex items-center py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-8">
+                
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-brand-500/20 text-xs sm:text-sm font-mono text-brand-400 animate-float">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="text-emerald-400 font-bold">V2.0</span>
+                    <span class="text-gray-400">|</span>
+                    <span>Topluluğumuz Aktif ve Büyüyor</span>
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none">
+                    Script Dünyasının En Güçlü <span class="gradient-text neon-text-purple">Merkezi</span>
+                </h1>
+
+                <!-- Subtitle / Slogan -->
+                <p class="text-lg sm:text-xl text-gray-300 font-normal leading-relaxed max-w-2xl mx-auto">
+                    Sunucuya katıl, en güncel scriptleri hemen al! Aradığın performans, güvenlik ve özel içerikler tek adreste.
+                </p>
+
+                <!-- Primary Call To Action (CTA) Button -->
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://discord.gg/HxnF5hzRN" target="_blank" rel="noopener noreferrer" 
+                       class="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white rounded-2xl bg-gradient-to-r from-brand-600 via-brand-500 to-brand-accent hover:from-brand-500 hover:to-brand-600 shadow-xl shadow-brand-600/30 hover:shadow-brand-500/50 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden">
+                        
+                        <!-- Light Reflection Overlay -->
+                        <div class="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000"></div>
+                        
+                        <i class="fa-brands fa-discord text-2xl mr-3 group-hover:rotate-12 transition-transform duration-300"></i>
+                        <span>DISCORD SUNUCUSUNA KATIL</span>
+                        <i class="fa-solid fa-arrow-right ml-3 text-sm opacity-70 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Live Counter Stats -->
+                <div class="pt-8 grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl mx-auto">
+                    <div class="p-3 rounded-xl glass-card text-center">
+                        <div class="text-2xl font-extrabold text-white font-mono">100%</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Güncel Scriptler</div>
+                    </div>
+                    <div class="p-3 rounded-xl glass-card text-center">
+                        <div class="text-2xl font-extrabold text-white font-mono">7/24</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Kesintisiz Destek</div>
+                    </div>
+                    <div class="p-3 rounded-xl glass-card text-center col-span-2 md:col-span-1">
+                        <div class="text-2xl font-extrabold text-white font-mono">Hızlı</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Anında Indirme</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Features Highlights Grid -->
+            <div class="mt-20 lg:mt-28">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Neden <span class="text-brand-400">Flex</span> Seçmelisin?</h2>
+                    <p class="text-gray-400 text-sm mt-2">Ayrıcalıklı topluluğumuzun sunduğu avantajlar</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Feature Card 1 -->
+                    <div class="p-6 rounded-2xl glass-card transition-all duration-300 hover:-translate-y-2 group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Anında Erişim</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Sunucuya katıldığın anda beklemeden tüm açık kaynak ve güncel içeriklere doğrudan ulaş.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 2 -->
+                    <div class="p-6 rounded-2xl glass-card transition-all duration-300 hover:-translate-y-2 group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">En Güncel Scriptler</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Sürekli yenilenen ve optimize edilen kütüphanemiz ile her zaman en son sürümleri kullan.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 3 -->
+                    <div class="p-6 rounded-2xl glass-card transition-all duration-300 hover:-translate-y-2 group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">7/24 Aktif Topluluk</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Yardımsever yetkili kadrosu ve aktif üyelerle sorularına anında yanıt bulabilirsin.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 4 -->
+                    <div class="p-6 rounded-2xl glass-card transition-all duration-300 hover:-translate-y-2 group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 shadow-md">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Güvenilir & Hızlı</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Test edilmiş, sorunsuz ve güvenli kod altyapısı ile projelerini riske atmadan geliştir.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Banner CTA Section -->
+            <div class="mt-20 p-8 sm:p-12 rounded-3xl glass-card border border-brand-500/30 relative overflow-hidden text-center">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-500/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+                    <h2 class="text-3xl font-extrabold text-white">Topluluğumuza Katılmaya Hazır Mısın?</h2>
+                    <p class="text-gray-300 text-sm sm:text-base">
+                        Vakit kaybetmeden Discord sunucumuza gel ve en güncel script arşivine hemen ulaş!
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://discord.gg/HxnF5hzRN" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-slate-950 font-bold hover:bg-gray-200 transition-colors shadow-lg">
+                            <i class="fa-brands fa-discord text-xl text-brand-600"></i>
+                            <span>Hemen Katıl</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/5 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="text-xl font-extrabold tracking-wider gradient-text">FLEX</span>
+                <span class="text-xs text-gray-500">© 2026 Tüm hakları saklıdır.</span>
+            </div>
+            <div class="text-xs text-gray-500">
+                Created for Flex Community
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
